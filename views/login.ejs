@@ -1,0 +1,32 @@
+<%- include('common/header') %>
+
+<div class="container">
+    <div class="form-container">
+        <header>
+            <h2>Login</h2>
+            <img src="/images/logo.png" alt="">
+        </header>
+        <form id="loginForm" action="/handleLogin" method="post">
+            <% if (error) { %>
+                <div class="alert alert-danger mb-15">
+                    <%= error %>
+                </div>
+            <% } %>
+            <div class="title mb-15">
+                <input type="email" id="email" name="email" placeholder="Enter your email"/>
+            </div>
+            <div class="title mb-15">
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Enter your password"/>
+                    <i class="fa-regular fa-eye-slash"></i>
+                </div>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <footer>
+            <p>Don't have an account? <a href="/">Signup</a></p>
+        </footer>
+    </div>
+</div>
+
+<%- include('common/footer') %>

@@ -1,0 +1,45 @@
+<%- include('common/header') %>
+
+<div class="container">
+    <div class="form-container">
+        <header>
+            <h2>Signup</h2>
+            <img src="/images/logo.png" alt="">
+        </header>
+        <form id="signupForm" action="/handleSignup" method="post">
+            <% if (error) { %>
+                <div class="alert alert-danger mb-15">
+                    <%= error %>
+                </div>
+            <% } %>
+            <div class="title mb-15">
+                <input type="text" id="name" name="name" placeholder="Enter your name"/>
+                <span class="error" id="emailError"></span>
+            </div>
+            <div class="title mb-15">
+                <input type="email" id="email" name="email" placeholder="Enter your email"/>
+                <!-- <div class="invalid-feedback">Valid email is required.</div> -->
+            </div>
+            <div class="title mb-15">
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Enter your password"/>
+                    <i class="fa-regular fa-eye-slash"></i>
+                </div>
+                <!-- <div class="invalid-feedback">Password is required.</div> -->
+            </div>
+            <div class="title mb-15">
+                <div class="confirm-container">
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password"/>
+                    <i class="fa-regular fa-eye-slash"></i>
+                </div>
+                <!-- <div class="invalid-feedback">Password is required.</div> -->
+            </div>
+            <button type="submit" class="btn">Signup</button>
+        </form>
+        <footer>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </footer>
+    </div>
+</div>
+
+<%- include('common/footer') %>

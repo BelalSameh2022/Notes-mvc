@@ -1,0 +1,108 @@
+<%- include('common/header') %>
+
+    <!-- Start navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/logo.png" alt="Notes">
+            <span class="logo-text">Notes</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#" title="<%= session.user.name %>"><i class="fa-solid fa-user"></i></a>
+            </li>
+            <li>
+                <a href="/logout" title="Logout"><i class="fa-solid fa-sign-out-alt"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End navbar -->
+
+    <!-- Start main -->
+    <main class="notes-container">
+        <div class="add-box">
+            <div class="icon">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <p>New note</p>
+        </div>
+        <% if (notes.length) { %>
+            <% for( let i = notes.length -1; i >= 0; i-- ) { %>
+                <div class="note">
+                    <div class="content">
+                        <h2 class="title"><%= notes[i].title %></h2>
+                        <p class="description"><%= notes[i].description %></p>
+                    </div>
+                    <div class="footer">
+                        <span class="date"><%= notes[i].date %></span>
+                        <div class="settings">
+                            <i onclick="showMenu(this)" class="fa-solid fa-ellipsis-h"></i>
+                            <ul class="menu">
+                                <li onclick="updateNote('<%= notes[i]._id %>', '<%= notes[i].title %>', '<%= notes[i].description %>')">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    Edit
+                                </li>
+                                <a href="/deleteNote/<%= notes[i]._id %>">
+                                    <li>
+                                        <i class="fa-regular fa-trash-can"></i>
+                                        Delete
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </main>
+    <!-- End main -->
+
+    <!-- Start add pop-up -->
+    <div class="popup">
+        <div class="popup-box">
+            <div class="content">
+                <header>
+                    <span>Add a new note</span>
+                    <i class="fa-solid fa-times"></i>
+                </header>
+                <form action="/addNote" method="post">
+                    <div class="row title">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" />
+                    </div>
+                    <div class="row description">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Add Note</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End add pop-up -->
+     
+    <!-- Start update pop-up -->
+    <div class="update-popup">
+        <div class="update-popup-box">
+            <div class="content">
+                <header>
+                    <span>Update a new note</span>
+                    <i class="fa-solid fa-times"></i>
+                </header>
+                <form action="/updateNote" method="post">
+                    <input type="hidden" id="noteId" name="noteId" />
+                    <div class="row title">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" />
+                    </div>
+                    <div class="row description">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Update Note</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- End update pop-up -->
+
+<%- include('common/footer') %>
